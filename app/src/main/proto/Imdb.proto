@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+option java_package = "info.cafeit.grpc";
+
+service IMDbService {
+    rpc Create (IMDbRequest) returns (IMDbResponse) {}
+    rpc Delete (QueryIMDbRequest) returns (IMDbDeleteResponse) {}
+    rpc Update (IMDbRequest) returns (IMDbResponse) {}
+    rpc List (ListIMDbRequest) returns (IMDbResponse) {}
+    rpc GetOne (QueryIMDbRequest) returns (QueryIMDbResponse) {}
+}
+
+message KeyValue {
+    string key = 1;
+    string value = 2;
+}
+
+message Query {
+    repeated KeyValue params = 2;
+}
+
+message IMDb {
+    uint32 id = 1;
+    string title = 2;
+    string description = 3;
+    int32 year = 4;
+    string slug = 5;
+    float rating = 6;
+    repeated string genres = 7;
+    repeated string stars = 8;
+    repeated string galleries = 9;
+    repeated string creators = 10;
+    string trailer = 11;
+    string createAt = 12;
+}
+
+message IMDbRequest {
+    IMDb IMDb = 1;
+}
+
+message ListIMDbRequest {
+
+}
+
+message QueryIMDbRequest {
+    uint32 id = 1;
+}
+
+message IMDbResponse {
+    string status = 1;
+    repeated IMDb data = 2;
+}
+
+message IMDbDeleteResponse {
+    string status = 1;
+    string message = 2;
+}
+
+message QueryIMDbResponse {
+    string status = 1;
+    IMDb data = 2;
+}

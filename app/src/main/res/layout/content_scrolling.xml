@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movieModel"
+            type="info.cafeit.topimdb.ui.home.Movie" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MainActivity"
+        tools:showIn="@layout/fragment_detail">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="20dp"
+            android:paddingBottom="40dp">
+
+            <TextView
+                android:id="@+id/labelReleaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:theme="@style/TextStyleBold"
+                android:text='@string/label_release_date'/>
+
+            <TextView
+                android:id="@+id/releaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/labelReleaseDate"
+                app:layout_constraintBottom_toBottomOf="@+id/labelReleaseDate"
+                app:layout_constraintLeft_toRightOf="@+id/labelReleaseDate"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:theme="@style/TextStylenNormal"
+                android:text='@{movieModel.year + ""}'/>
+
+
+            <TextView
+                android:id="@+id/labelRunningTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelReleaseDate"
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:theme="@style/TextStyleBold"
+                android:text='@string/label_runing_time'/>
+
+            <TextView
+                android:id="@+id/runningTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/labelRunningTime"
+                app:layout_constraintBottom_toBottomOf="@+id/labelRunningTime"
+                app:layout_constraintLeft_toRightOf="@+id/labelRunningTime"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:theme="@style/TextStylenNormal"
+                android:text='@{movieModel.runningTime}'/>
+
+            <TextView
+                android:id="@+id/labelGenres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/labelRunningTime"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextStyleBold"
+                android:text='@string/label_genres'/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/genresGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/labelGenres"
+                app:layout_constraintLeft_toRightOf="@+id/labelGenres"
+                app:layout_constraintBottom_toBottomOf="@+id/labelGenres">
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <TextView
+                android:id="@+id/labelDirector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genresGroup"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="15dp"
+                android:theme="@style/TextStyleBold"
+                android:text='@string/label_director'/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/directorGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/labelDirector"
+                app:layout_constraintLeft_toRightOf="@+id/labelDirector"
+                app:layout_constraintBottom_toBottomOf="@+id/labelDirector">
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:id="@+id/labelstar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/directorGroup"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                android:layout_marginTop="15dp"
+                app:layout_constraintRight_toLeftOf="@+id/starGroup"
+                android:theme="@style/TextStyleBold"
+                android:text='@string/label_star'/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/starGroup"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/labelstar"
+                app:layout_constraintLeft_toRightOf="@+id/labelstar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:chipSpacingVertical="5dp"
+                android:layout_marginTop="-5dp"
+                app:singleLine="false"
+                app:chipSpacing="0dp">
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <TextView
+                android:id="@+id/labelRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/starGroup"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="15dp"
+                android:theme="@style/TextStyleBold"
+                android:text='@string/label_rating'/>
+
+            <RatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:rating="@{movieModel.rating}"
+                android:isIndicator="true"
+                app:layout_constraintTop_toTopOf="@+id/labelRating"
+                app:layout_constraintLeft_toRightOf="@+id/labelRating"
+                app:layout_constraintBottom_toBottomOf="@+id/labelRating"
+                android:theme="@style/RatingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                />
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/labelRating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="10dp"
+                android:theme="@style/TextStylenNormal"
+                android:text="@{movieModel.description}"/>
+
+            <FrameLayout
+                android:id="@+id/frameYoutubeLoader"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

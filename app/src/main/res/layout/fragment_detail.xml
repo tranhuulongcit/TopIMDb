@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="movieModel"
+            type="info.cafeit.topimdb.ui.home.Movie" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ScrollingActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/Theme.TopIMDb.AppBarOverlay">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:expandedTitleTextAppearance="@style/CollapsedAppBar"
+                app:collapsedTitleGravity="left"
+                app:expandedTitleMarginStart="10dp"
+                app:expandedTitleMarginBottom="45dp"
+                app:title="@{movieModel.title}"
+                app:toolbarId="@+id/toolbar">
+
+                <FrameLayout
+                    android:id="@+id/frameGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/viewPagerGallery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabBackground="@drawable/tab_indicator"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp"
+                        android:layout_gravity="bottom"
+                        android:background="@null">
+
+                    </com.google.android.material.tabs.TabLayout>
+                </FrameLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/Theme.TopIMDb.PopupOverlay" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            android:id="@+id/groupContent"
+            layout="@layout/content_scrolling"
+            app:movieModel="@{movieModel}"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="right|bottom"
+            app:srcCompat="@drawable/ic_star"
+            app:tint="@color/gold"
+            app:fabSize="mini"
+            app:backgroundTint="@color/white"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
